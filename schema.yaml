@@ -23,9 +23,7 @@ variableGroups:
   visible: true  
   variables:
   - region1
-  - availablity_domain_name 
   - region2
-  - availablity_domain_name2
   - compartment_ocid
   - show_advanced 
 
