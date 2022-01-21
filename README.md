@@ -1,6 +1,10 @@
 # terraform-oci-x-region-volume-replica
 
-test
+## Topology Diagram
+
+With the usage of this example HCL code you can build topology documented by diagram below.
+
+![](terraform-oci-x-region-volume-replica.jpg)
 
 ## Deploy Using Oracle Resource Manager
 
