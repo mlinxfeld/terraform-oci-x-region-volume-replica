@@ -10,6 +10,7 @@ resource "oci_core_volume" "FoggyKitchenWebServer1BlockVolume100G" {
     availability_domain = var.availablity_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availablity_domain_name2
     display_name = "FoggyKitchenWebServer1 BlockVolume 100G replica"
   }  
+  block_volume_replicas_deletion = true
 }
 
 # Attachment of 100 GB Block Volume to Webserver1
