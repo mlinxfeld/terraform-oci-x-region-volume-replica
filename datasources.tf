@@ -78,5 +78,17 @@ data "oci_core_vnic" "FoggyKitchenWebServer2_VNIC1" {
   vnic_id  = data.oci_core_vnic_attachments.FoggyKitchenWebServer2_VNIC1_attach.vnic_attachments.0.vnic_id
 }
 
-
+data "oci_core_block_volume_replicas" "FoggyKitchenWebServer1BlockVolume100G_xregion_replica" {
+  depends_on          = [oci_core_volume.FoggyKitchenWebServer1BlockVolume100G, 
+                         null_resource.FoggyKitchenWebServer1_oci_httpd_data_fstab,
+                         null_resource.FoggyKitchenWebServer1HTTPD]
+  provider            = oci.acceptor
+  availability_domain = var.availablity_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availablity_domain_name2
+  compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
+  
+  filter {
+    name   = "state"
+    values = ["AVAILABLE"]
+  }
+}
 
