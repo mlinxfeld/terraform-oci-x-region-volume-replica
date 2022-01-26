@@ -68,7 +68,7 @@ data "oci_core_vnic" "FoggyKitchenWebServer1_VNIC1" {
 data "oci_core_vnic_attachments" "FoggyKitchenWebServer2_VNIC1_attach" {
   provider            = oci.acceptor
   availability_domain = var.availability_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availability_domain_name2
-  compartment_id      = oci_identity_compartment.ExternalCompartment.id
+  compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   instance_id         = oci_core_instance.FoggyKitchenWebServer2.id
 }
 
