@@ -38,9 +38,9 @@ resource "oci_identity_policy" "FoggyKitchenAcceptorPolicy" {
   description    = "FoggyKitchenAcceptorPolicy"
   compartment_id = var.tenancy_ocid
 
-  statements = ["Allow group ${oci_identity_group.FoggyKitchenRequestorGroup.name} to manage remote-peering-to in compartment id ${oci_identity_compartment.ExternalCompartment.id}",
-    "Allow group ${oci_identity_group.FoggyKitchenAcceptorGroup.name} to manage virtual-network-family in compartment id ${oci_identity_compartment.ExternalCompartment.id}",
-    "Allow group ${oci_identity_group.FoggyKitchenAcceptorGroup.name} to manage instance-family in compartment id ${oci_identity_compartment.ExternalCompartment.id}",
+  statements = ["Allow group ${oci_identity_group.FoggyKitchenAcceptorGroup.name} to manage remote-peering-to in compartment id ${oci_identity_compartment.FoggyKitchenCompartment.id}",
+    "Allow group ${oci_identity_group.FoggyKitchenAcceptorGroup.name} to manage virtual-network-family in compartment id ${oci_identity_compartment.FoggyKitchenCompartment.id}",
+    "Allow group ${oci_identity_group.FoggyKitchenAcceptorGroup.name} to manage instance-family in compartment id ${oci_identity_compartment.FoggyKitchenCompartment.id}",
   ]
 }
 

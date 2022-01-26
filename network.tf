@@ -12,7 +12,7 @@ resource "oci_core_virtual_network" "FoggyKitchenVCN2" {
   provider       = oci.acceptor
   cidr_block     = var.VCN2-CIDR
   dns_label      = "FKVCN2"
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name   = "FoggyKitchenVCN2"
 }
 
@@ -40,7 +40,7 @@ resource "oci_core_dhcp_options" "FoggyKitchenDhcpOptions1" {
 # DHCP Options for VCN2
 resource "oci_core_dhcp_options" "FoggyKitchenDhcpOptions2" {
   provider       = oci.acceptor
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   vcn_id         = oci_core_virtual_network.FoggyKitchenVCN2.id
   display_name   = "FoggyKitchenDHCPOptions1"
 
@@ -96,7 +96,7 @@ resource "oci_core_internet_gateway" "FoggyKitchenInternetGateway2" {
 # Route Table for VCN2
 resource "oci_core_route_table" "FoggyKitchenRouteTableVCN2" {
   provider       = oci.acceptor
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   vcn_id         = oci_core_virtual_network.FoggyKitchenVCN2.id
   display_name   = "FoggyKitchenRouteTableVCN2"
 
@@ -159,7 +159,7 @@ resource "oci_core_security_list" "FoggyKitchenWebSecurityList1" {
 # Security List for SSH/HTTP/HTTPS in VCN2
 resource "oci_core_security_list" "FoggyKitchenWebSecurityList2" {
   provider       = oci.acceptor
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name   = "FoggyKitchenWebSecurityList2"
   vcn_id         = oci_core_virtual_network.FoggyKitchenVCN2.id
 
@@ -218,7 +218,7 @@ resource "oci_core_subnet" "FoggyKitchenDRSubnet" {
   cidr_block        = var.DRSubnet-CIDR
   display_name      = "FoggyKitchenDRSubnet"
   dns_label         = "fkndr"
-  compartment_id    = oci_identity_compartment.ExternalCompartment.id
+  compartment_id    = oci_identity_compartment.FoggyKitchenCompartment.id
   vcn_id            = oci_core_virtual_network.FoggyKitchenVCN2.id
   route_table_id    = oci_core_route_table.FoggyKitchenRouteTableVCN2.id
   dhcp_options_id   = oci_core_dhcp_options.FoggyKitchenDhcpOptions2.id

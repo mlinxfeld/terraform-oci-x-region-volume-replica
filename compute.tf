@@ -33,7 +33,7 @@ resource "oci_core_instance" "FoggyKitchenWebServer1" {
 resource "oci_core_instance" "FoggyKitchenWebServer2" {
   provider            = oci.acceptor
   availability_domain = var.availability_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availability_domain_name2
-  compartment_id      = oci_identity_compartment.ExternalCompartment.id
+  compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name        = "FoggyKitchenWebServer2"
   shape               = var.Shape
   dynamic "shape_config" {

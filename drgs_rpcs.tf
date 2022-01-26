@@ -30,7 +30,7 @@ resource "oci_core_drg" "FoggyKitchenDRG2" {
   depends_on     = [oci_identity_policy.FoggyKitchenAcceptorPolicy]
   provider       = oci.acceptor
   display_name   = "FoggyKitchenDRG2"
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
 }
 
 # DRG2 Attachment with VCN
@@ -45,7 +45,7 @@ resource "oci_core_drg_attachment" "FoggyKitchenDRG2Attachment" {
 resource "oci_core_remote_peering_connection" "FoggyKitchenRPC2" {
   depends_on     = [oci_identity_policy.FoggyKitchenAcceptorPolicy]
   provider       = oci.acceptor
-  compartment_id = oci_identity_compartment.ExternalCompartment.id
+  compartment_id = oci_identity_compartment.FoggyKitchenCompartment.id
   drg_id         = oci_core_drg.FoggyKitchenDRG2.id
   display_name   = "FoggyKitchenRPC2"
 }
