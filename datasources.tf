@@ -53,7 +53,7 @@ data "oci_core_images" "R-OSImage" {
 # WebServer1 Compute VNIC Attachment DataSource
 data "oci_core_vnic_attachments" "FoggyKitchenWebServer1_VNIC1_attach" {
   provider            = oci.requestor
-  availability_domain = var.availablity_domain_name == "" ? lookup(data.oci_identity_availability_domains.R-ADs.availability_domains[0], "name") : var.availablity_domain_name
+  availability_domain = var.availability_domain_name == "" ? lookup(data.oci_identity_availability_domains.R-ADs.availability_domains[0], "name") : var.availability_domain_name
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   instance_id         = oci_core_instance.FoggyKitchenWebServer1.id
 }
@@ -67,7 +67,7 @@ data "oci_core_vnic" "FoggyKitchenWebServer1_VNIC1" {
 # WebServer2 Compute VNIC Attachment DataSource
 data "oci_core_vnic_attachments" "FoggyKitchenWebServer2_VNIC1_attach" {
   provider            = oci.acceptor
-  availability_domain = var.availablity_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availablity_domain_name2
+  availability_domain = var.availability_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availability_domain_name2
   compartment_id      = oci_identity_compartment.ExternalCompartment.id
   instance_id         = oci_core_instance.FoggyKitchenWebServer2.id
 }
@@ -83,7 +83,7 @@ data "oci_core_block_volume_replicas" "FoggyKitchenWebServer1BlockVolume100G_xre
                          null_resource.FoggyKitchenWebServer1_oci_httpd_data_fstab,
                          null_resource.FoggyKitchenWebServer1HTTPD]
   provider            = oci.acceptor
-  availability_domain = var.availablity_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availablity_domain_name2
+  availability_domain = var.availability_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availability_domain_name2
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   
   filter {

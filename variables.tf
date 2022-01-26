@@ -5,11 +5,11 @@ variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
 
-variable "availablity_domain_name" {
+variable "availability_domain_name" {
   default = ""
 }
 
-variable "availablity_domain_name2" {
+variable "availability_domain_name2" {
   default = ""
 }
 
@@ -74,6 +74,9 @@ locals {
   ]
 }
 
+variable "activate_block_volume_replica" {
+  default = true
+}
 
 # Checks if is using Flexible Compute Shapes
 locals {

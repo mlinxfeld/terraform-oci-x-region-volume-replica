@@ -119,6 +119,7 @@ resource "null_resource" "FoggyKitchenWebServer1HTTPD" {
 # Attachment of block volume to Webserver2
 
 resource "null_resource" "FoggyKitchenWebServer2_oci_iscsi_attach" {
+  count      = var.activate_block_volume_replica ? 1 : 0
   depends_on = [oci_core_volume_attachment.FoggyKitchenWebServer2BlockVolume100G_attach]
 
   provisioner "remote-exec" {
@@ -168,6 +169,7 @@ resource "null_resource" "FoggyKitchenWebServer2_oci_iscsi_attach" {
 # Mount of attached block volume on Webserver2
 
 resource "null_resource" "FoggyKitchenWebServer2_oci_httpd_data_fstab" {
+  count      = var.activate_block_volume_replica ? 1 : 0
   depends_on = [null_resource.FoggyKitchenWebServer2_oci_iscsi_attach]
 
   provisioner "remote-exec" {
@@ -194,6 +196,7 @@ resource "null_resource" "FoggyKitchenWebServer2_oci_httpd_data_fstab" {
 # Software installation within WebServer2 Instance
 
 resource "null_resource" "FoggyKitchenWebServer2HTTPD" {
+  count      = var.activate_block_volume_replica ? 1 : 0
   depends_on = [oci_core_instance.FoggyKitchenWebServer2,null_resource.FoggyKitchenWebServer2_oci_httpd_data_fstab]
   provisioner "remote-exec" {
     connection {

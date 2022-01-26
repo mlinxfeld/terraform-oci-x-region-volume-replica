@@ -2,7 +2,7 @@
 
 resource "oci_core_instance" "FoggyKitchenWebServer1" {
   provider            = oci.requestor
-  availability_domain = var.availablity_domain_name == "" ? lookup(data.oci_identity_availability_domains.R-ADs.availability_domains[0], "name") : var.availablity_domain_name
+  availability_domain = var.availability_domain_name == "" ? lookup(data.oci_identity_availability_domains.R-ADs.availability_domains[0], "name") : var.availability_domain_name
   compartment_id      = oci_identity_compartment.FoggyKitchenCompartment.id
   display_name        = "FoggyKitchenWebServer1"
   shape               = var.Shape
@@ -32,7 +32,7 @@ resource "oci_core_instance" "FoggyKitchenWebServer1" {
 
 resource "oci_core_instance" "FoggyKitchenWebServer2" {
   provider            = oci.acceptor
-  availability_domain = var.availablity_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availablity_domain_name2
+  availability_domain = var.availability_domain_name2 == "" ? lookup(data.oci_identity_availability_domains.A-ADs.availability_domains[0], "name") : var.availability_domain_name2
   compartment_id      = oci_identity_compartment.ExternalCompartment.id
   display_name        = "FoggyKitchenWebServer2"
   shape               = var.Shape
